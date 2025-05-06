@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title> Information </title>
+  <!-- Libraries -->
+  <link rel="stylesheet" href="style.css">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="components.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="components.js"></script>
+  <script src="filter.js"></script>
+  <!--  This is a font app for the icon  -->
+  <script src="https://kit.fontawesome.com/92f16b5927.js" crossorigin="anonymous"></script>
+</head>
+
+<body onload="init()">
+  <script>
+    AOS.init();
+  </script>
+  <!-- NAV BAR -->
+  <nav>
+    <a href="index.html"> <img src="images/logo.png" class="logo"></a>
+    <ul>
+      <li><a href="index.html">Homepage</a></li>
+      <li><a href="infopage.html">Information Page </a></li>
+      <li><a href="analysis.html">analysis page</a></li>
+      <li><a href="history.html">history</a></li>
+    </ul>
+  </nav>
+
+  <div class="info-pg">
+    <div class="sticky hidden">
+      <div class="filters">
+        <h3> By Age </h3>
+        <input type="radio" id="choice1" name="furColor" onclick="radio('Adult', data, 'age', 'output1')">
+        <label for="adult"> Adult </label>
+        <br>
+
+        <input type="radio" id="choice2" name="furColor" onclick="radio('Juvenile', data, 'age', 'output1')">
+        <label for="juvenile"> Juvenile </label>
+        <hr>
+
+        <h3> By Fur Color </h3>
+        <select id="furColor" class="textBox"></select>
+        <br>
+        <a class="button" onclick="getSquirrels()"> View </a>
+        <hr>
+
+        <h3> By Location </h3>
+        <input type="radio" id="choice1" name="location" onclick="radio('Above Ground', data, 'location', 'output1')">
+        <label for="juvenile"> Above Ground </label>
+        <br>
+        <input type="radio" id="choice2" name="location" onclick="radio('Ground Plane', data, 'location', 'output1')">
+        <label for="juvenile"> Ground Plane </label>
+        <br>
+        <hr>
+
+        <h3> By Age and Fur Color </h3>
+        <select id="furColor1" class="textBox"></select>
+        <input type="text" id="age1" placeholder="Adult/Juvenile" class="textBox">
+        <br>
+        <a class="button" onclick="getAgeAndFurColor()"> View </a>
+
+        <hr>
+        <h3> By Location and Age </h3>
+        <select id="location2" class="textBox"></select>
+        <input type="text" id="age2" placeholder="Adult/Juvenile" class="textBox">
+        <br>
+        <a class="button" onclick="getLocationAndAge()"> View </a>
+
+        <hr>
+        <h3> By Fur Color and Location </h3>
+        <select id="furColor2" class="textBox"></select>
+        <input type="text" id="location3" placeholder="Ground Plane/Above Ground" class="textBox">
+        <br>
+        <a class="button" onclick="getFurColorAndLocation()"> View </a>
+      </div>
+    </div>
+
+    <div class="not-sticky">
+      <div id="output1">
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:2rem">
+
+  </div>
+
+  <div class="info-pg" style="margin-top: 3rem; padding-left: 2.5rem; padding-bottom: 2.5rem;">
+    <div class="not-sticky">
+      <div id="output2">
+      </div>
+    </div>
+    <div class="sticky hidden">
+      <div class="filters">
+        <h3> By Time </h3>
+        <input type="radio" id="choice1" name="time" onclick="radio1('AM', data1, 'shift', 'output2')">
+        <label for="adult"> AM </label>
+        <br>
+        <input type="radio" id="choice2" name="time" onclick="radio1('PM', data1, 'shift', 'output2')">
+        <label for="juvenile"> PM </label>
+
+        <hr>
+
+        <h3> By Hectare </h3>
+        <select id="hectare" class="textBox"></select>
+        <br>
+        <a class="button" onclick="getSquirrels1()"> View </a>
+
+        <hr>
+
+        <h3> By Hectare & Time </h3>
+        <input type="text" id="time-text" placeholder="AM/PM" class="textBox">
+        <select id="hectare2" class="textBox"></select>
+        <br>
+        <a class="button" onclick="getHectareAndTime()"> View </a>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <!--  FOOTER  -->
+  <!-- <footer>
+    <div class="footer-content" data-aos="fade-up" data-aos-duration="450">
+      <h3 style="font-family: 'Open Sans', Arial, sans-serif;">Squirrel Census: Tracking Tails, Unlocking
+        Insights</h3>
+      <p> Embark on a journey of squirrel discovery as we gather valuable data through our census, fostering
+        a deeper appreciation for these agile inhabitants of our ecosystems. </p>
+      <div class="social-icon">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://twitter.com/home" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.pinterest.com/" target="_blank"><i class="fa-brands fa-pinterest"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>copyright &copy; 2023 Squirrel Census. designed by <span>Althea Magtibay & Abbie Zheng</span></p>
+    </div>
+  </footer>
+
+
+  <div id="banner" class="section-filter container center">
+    <h1 style="font-size: 3rem; padding-top: 1rem;"> Squirrels and their Stories </h1>
+  </div>
+  <div class="container center text">
+    <div>
+      <p style="padding-bottom: 1rem">Learn more about the squirrels of NYC!</p>
+      <hr>
+    </div>
+  </div> -->
+
+</body>
+
+</html>
